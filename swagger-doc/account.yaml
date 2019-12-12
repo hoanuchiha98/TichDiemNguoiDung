@@ -1,0 +1,38 @@
+definitions:
+  register:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+        format: password
+      fullname:
+        type: string
+      dob:
+        type: string
+        format: date
+      address:
+        type: string
+      phone_number:
+        type: string
+      email:
+        type: string
+
+paths:
+  /users/register:
+    post:
+      operationId: controllers.user_controller.register
+      summary: Register an user
+      security: []
+      tags:
+        - user
+      parameters:
+        - name: user_data
+          in: body
+          schema:
+            $ref: "#/definitions/register"
+          required: true
+      responses:
+        200:
+          description: OK
