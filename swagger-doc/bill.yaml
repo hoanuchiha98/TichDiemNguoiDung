@@ -1,0 +1,101 @@
+definitions:
+  bill:
+    type: object
+    required:
+      - user_id
+      - product_id
+    properties:
+      user_id:
+        type: integer
+      product_id:
+        type: integer
+      money_bill:
+        type: integer
+      conversion_point:
+        type: integer
+      conversion_point_last:
+        type: integer
+      ship_money:
+        type: number
+        format: float
+paths:
+  /bills:
+    get:
+      operationId: controllers.bill_controller.get_all
+      summary: Get bills by page_number and page_size
+      description: Get bills by page_number and page_size
+      tags:
+        - bill
+      parameters:
+        - name: page_number
+          in: query
+          type: integer
+        - name: page_size
+          in: query
+          type: integer
+      responses:
+        200:
+          description: OK
+
+    post:
+      operationId: controllers.bill_controller.create
+      summary: Create an bill
+      tags:
+        - bill
+      parameters:
+        - name: bill_data
+          in: body
+          schema:
+            $ref: "#/definitions/bill"
+          required: true
+      responses:
+        200:
+          description: OK
+  /bills/{bill_id}:
+    get:
+      operationId: controllers.bill_controller.get_by_id
+      summary: Get bill by id
+      security:
+        - JWT_user: []
+        - JWT_admin: []
+      tags:
+        - bill
+      parameters:
+        - name: bill_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
+    delete:
+      operationId: controllers.bill_controller.delete
+      summary: Delete bill by id
+      tags:
+        - bill
+      parameters:
+        - name: bill_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
+    put:
+      operationId: controllers.bill_controller.update
+      summary: Update bill by id
+      tags:
+        - bill
+      parameters:
+        - name: bill_id
+          in: path
+          required: true
+          type: integer
+        - name: bill_data
+          in: body
+          schema:
+            $ref: "#/definitions/bill"
+          required: true
+      responses:
+        200:
+          description: OK

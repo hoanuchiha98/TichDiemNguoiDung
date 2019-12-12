@@ -1,0 +1,96 @@
+definitions:
+  money_to_point:
+    type: object
+    properties:
+      start_date:
+        type: string
+        format: date
+      end_date:
+        type: string
+        format: date
+      rate_to_point:
+        type: number
+        format: float
+
+
+paths:
+  /points/money_to_point:
+    get:
+      operationId: controllers.money_to_point_controller.get_all
+      summary: Get money_to_points by page_number and page_size
+      description: Get money_to_points by page_number and page_size
+      tags:
+        - point
+      parameters:
+        - name: page_number
+          in: query
+          type: integer
+        - name: page_size
+          in: query
+          type: integer
+      responses:
+        200:
+          description: OK
+
+    post:
+      operationId: controllers.money_to_point_controller.create
+      summary: Create an money_to_point
+      tags:
+        - point
+      parameters:
+        - name: money_to_point_data
+          in: body
+          schema:
+            $ref: "#/definitions/money_to_point"
+          required: true
+      responses:
+        200:
+          description: OK
+  /points/money_to_point/{money_to_point_id}:
+    get:
+      operationId: controllers.money_to_point_controller.get_by_id
+      summary: Get money_to_point by id
+      security:
+        - JWT_user: []
+        - JWT_admin: []
+      tags:
+        - point
+      parameters:
+        - name: money_to_point_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
+    delete:
+      operationId: controllers.money_to_point_controller.delete
+      summary: Delete money_to_point by id
+      tags:
+        - point
+      parameters:
+        - name: money_to_point_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
+    put:
+      operationId: controllers.money_to_point_controller.update
+      summary: Update money_to_point by id
+      tags:
+        - point
+      parameters:
+        - name: money_to_point_id
+          in: path
+          required: true
+          type: integer
+        - name: money_to_point_data
+          in: body
+          schema:
+            $ref: "#/definitions/money_to_point"
+          required: true
+      responses:
+        200:
+          description: OK

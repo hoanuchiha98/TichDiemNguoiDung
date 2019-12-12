@@ -1,0 +1,93 @@
+definitions:
+  type_member:
+    type: object
+    required:
+      - name_member
+    properties:
+      name_member:
+        type: string
+      price:
+        type: integer
+      status:
+        type: integer
+paths:
+  /members/type:
+    get:
+      operationId: controllers.type_member_controller.get_all
+      summary: Get type_member by page_number and page_size
+      description: Get type_member by page_number and page_size
+      tags:
+        - member
+      parameters:
+        - name: page_number
+          in: query
+          type: integer
+        - name: page_size
+          in: query
+          type: integer
+      responses:
+        200:
+          description: OK
+
+    post:
+      operationId: controllers.type_member_controller.create
+      summary: Create an type_member
+      tags:
+        - member
+      parameters:
+        - name: type_member_data
+          in: body
+          schema:
+            $ref: "#/definitions/type_member"
+          required: true
+      responses:
+        200:
+          description: OK
+  /members/type/{type_member_id}:
+    get:
+      operationId: controllers.type_member_controller.get_by_id
+      summary: Get type_member by id
+      security:
+        - JWT_user: []
+        - JWT_admin: []
+      tags:
+        - member
+      parameters:
+        - name: type_member_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
+    delete:
+      operationId: controllers.type_member_controller.delete
+      summary: Delete type_member by id
+      tags:
+        - member
+      parameters:
+        - name: type_member_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
+    put:
+      operationId: controllers.type_member_controller.update
+      summary: Update type_member by id
+      tags:
+        - member
+      parameters:
+        - name: type_member_id
+          in: path
+          required: true
+          type: integer
+        - name: type_member_data
+          in: body
+          schema:
+            $ref: "#/definitions/type_member"
+          required: true
+      responses:
+        200:
+          description: OK

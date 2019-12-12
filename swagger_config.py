@@ -13,7 +13,13 @@ swagger_file = hiyapyco.load(
 
         # swagger-doc
         'swagger-doc/user.yaml',
-        'swagger-doc/account.yaml'
+        'swagger-doc/account.yaml',
+        'swagger-doc/product.yaml',
+        'swagger-doc/type_member.yaml',
+        'swagger-doc/bill.yaml',
+        'swagger-doc/bill_detail.yaml',
+        'swagger-doc/money_to_point.yaml',
+        'swagger-doc/point_to_money.yaml'
     ],
     method=hiyapyco.METHOD_MERGE
 )
