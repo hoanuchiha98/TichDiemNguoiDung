@@ -4,15 +4,6 @@ from common.utils.http_status import HTTP_401_UNAUTHORIZED
 from controllers.auth import decode_token
 from models.user import UserModel, UserSchema
 
-
-def check_role_user(require_role: int):
-    user_info = get_user_info_from_token()
-    user_role = user_info["role"]
-    user_id = user_info["user_id"]
-    if user_role <= require_role:
-        return True
-    return False
-
 def get_user_info_from_token():
     """[Lấy thông tin người dùng từ token]
         RETURN: { 'iss': 'com.zalando.connexion',
