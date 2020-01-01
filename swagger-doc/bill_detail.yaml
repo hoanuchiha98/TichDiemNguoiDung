@@ -48,9 +48,6 @@ paths:
     get:
       operationId: controllers.bill_detail_controller.get_by_id
       summary: Get bill_detail by id
-      security:
-        - JWT_user: []
-        - JWT_admin: []
       tags:
         - bill
       parameters:

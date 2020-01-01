@@ -50,9 +50,6 @@ paths:
     get:
       operationId: controllers.point_to_money_controller.get_by_id
       summary: Get point_to_money by id
-      security:
-        - JWT_user: []
-        - JWT_admin: []
       tags:
         - point
       parameters:

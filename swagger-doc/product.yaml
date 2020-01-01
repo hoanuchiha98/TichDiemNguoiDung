@@ -47,9 +47,6 @@ paths:
     get:
       operationId: controllers.product_controller.get_by_id
       summary: Get product by id
-      security:
-        - JWT_user: []
-        - JWT_admin: []
       tags:
         - product
       parameters:

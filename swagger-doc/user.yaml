@@ -1,8 +1,6 @@
 definitions:
   user:
     type: object
-    required:
-      - role
     properties:
       username:
         type: string
@@ -11,12 +9,6 @@ definitions:
         format: password
       fullname:
         type: string
-      role:
-        type: integer
-        default: 1
-        enum:
-          - 0
-          - 1
       danger:
         type: boolean
         default: false
@@ -46,8 +38,6 @@ paths:
       operationId: controllers.user_controller.get_all
       summary: Get users by page_number and page_size
       description: Get users by page_number and page_size
-      security:
-        - JWT_admin: []
       tags:
         - user
       parameters:
@@ -79,9 +69,6 @@ paths:
     get:
       operationId: controllers.user_controller.get_by_id
       summary: Get user by id
-      security:
-        - JWT_user: []
-        - JWT_admin: []
       tags:
         - user
       parameters:
