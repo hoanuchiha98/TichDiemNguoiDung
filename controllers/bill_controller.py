@@ -10,10 +10,10 @@ def get_all(page_number=1, page_size=20):
     if role==False:
         send_response(code=HTTP_404_NOT_FOUND)
     result = bill_service.get_all(page_number=page_number, page_size=page_size)
-    data = result[0]
-    http_status = result[1]
+    data = result[1]
+    http_status = result[0]
     # return
-    return Response(data, status=http_status)
+    return send_response(code=http_status, data=data)
 
 def create(bill_data):
     role = check_role_user(0)

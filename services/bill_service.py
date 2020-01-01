@@ -11,10 +11,12 @@ def get_all(page_number, page_size):
         if total == 0:
             return HTTP_404_NOT_FOUND, None, 0
         items = BillModel.query.paginate(page_number, page_size).items
+        print('item-bill---------', items)
         if items in [None, {}]:
             return HTTP_404_NOT_FOUND, None, 0
         # dump data
         result = schema.dump(items, many=True)
+        print('item-bill---------', result)
         return HTTP_200_OK, result, total
     except Exception as error:
         print("Error----------------", error)

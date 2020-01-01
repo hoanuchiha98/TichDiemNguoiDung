@@ -3,12 +3,10 @@ definitions:
     type: object
     required:
       - user_id
-      - product_id
     properties:
       user_id:
         type: integer
-      product_id:
-        type: integer
+
       money_bill:
         type: integer
       conversion_point:

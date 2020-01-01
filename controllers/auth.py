@@ -42,7 +42,6 @@ def generate_token(auth_payload):
 
 def decode_token(token, required_scopes):
     try:
-        print("Decode--------", )
         return jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
     except JWTError as e:
         six.raise_from(Unauthorized, e)
