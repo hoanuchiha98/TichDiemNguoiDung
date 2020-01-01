@@ -47,9 +47,6 @@ paths:
     get:
       operationId: controllers.type_member_controller.get_by_id
       summary: Get type_member by id
-      security:
-        - JWT_user: []
-        - JWT_admin: []
       tags:
         - member
       parameters:

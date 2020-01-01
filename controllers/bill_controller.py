@@ -1,3 +1,5 @@
+from flask import Response
+
 from common.utils.check_role import check_role_user
 from common.utils.http_status import HTTP_404_NOT_FOUND, HTTP_409_CONFLICT
 from common.utils.response_status_utils import send_response
@@ -8,11 +10,10 @@ def get_all(page_number=1, page_size=20):
     if role==False:
         send_response(code=HTTP_404_NOT_FOUND)
     result = bill_service.get_all(page_number=page_number, page_size=page_size)
-    http_status = result[0]
-    data = result[1]
-    total = result[2]
+    data = result[0]
+    http_status = result[1]
     # return
-    return send_response(code=http_status, data=data, total=total)
+    return Response(data, status=http_status)
 
 def create(bill_data):
     role = check_role_user(0)

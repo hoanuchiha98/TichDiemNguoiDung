@@ -1,6 +1,6 @@
 # For Authentication
 security:
-  - JWT_admin: []
+  - JWT: []
 
 paths:
   /authenticate:
@@ -11,13 +11,6 @@ paths:
         - authenticate
       security: []
       parameters:
-        - name: admin
-          in: query
-          required: false
-          type: boolean
-          enum:
-            - true
-            - false
         - name: auth_payload
           in: body
           required: true
@@ -33,15 +26,15 @@ paths:
           description: OK
 
 securityDefinitions:
-  JWT_user:
-    description: Authorization using JWT_user
+  JWT:
+    description: Authorization using JWT
     in: header
-    name: Authorization_user
+    name: Authorization
     type: apiKey
     x-apikeyInfoFunc: "controllers.auth.decode_token"
-  JWT_admin:
-    description: Authorization using JWT_admin
-    in: header
-    name: Authorization_admin
-    type: apiKey
-    x-apikeyInfoFunc: "controllers.auth.decode_admin_token"
+#  JWT_admin:
+#    description: Authorization using JWT_admin
+#    in: header
+#    name: Authorization_admin
+#    type: apiKey
+#    x-apikeyInfoFunc: "controllers.auth.decode_admin_token"
