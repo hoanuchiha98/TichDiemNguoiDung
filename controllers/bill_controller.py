@@ -38,6 +38,7 @@ def update(bill_id, bill_data):
         return send_response(code=HTTP_404_NOT_FOUND)
     result = bill_service.update(bill_id=bill_id, bill_data=bill_data)
     http_status = result[0]
+
     data = result[1]
     # return
     return send_response(code=http_status, data=data)
