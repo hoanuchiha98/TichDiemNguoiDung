@@ -9,6 +9,12 @@ definitions:
       product_price:
         type: number
         format: float
+      photo:
+        type: string
+      count:
+        type: integer
+      description:
+        type: string
 
 paths:
   /products:
