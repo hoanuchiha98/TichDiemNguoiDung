@@ -10,6 +10,7 @@ swagger_file = hiyapyco.load(
         # main
         'swagger-doc/main.yaml',
         'swagger-doc/auth.yaml',
+        'swagger-doc/upload.yaml',
 
         # swagger-doc
         'swagger-doc/user.yaml',
