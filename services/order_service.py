@@ -3,6 +3,7 @@ from models.bill import BillSchema
 from datetime import datetime
 
 from models.bill_detail import BillDetailSchema
+from models.user import UserModel
 
 
 def create_order(order_data: dict):
@@ -29,6 +30,17 @@ def create_order(order_data: dict):
             db.session.add(bill_detail)
             db.session.flush()
             db.session.refresh(bill_detail)
+        # cập nhật điểm
+        user = UserModel.query.filter_by(id=order_data["user_id"]).first();
+        if user is None:
+            return False
+        user_point = int(user.point)
+        # Cập nhật điểm
+        user_point += int((order_data["money_bill"]) / 100)
+        user.point = user_point
+        db.session.add(user)
+        db.session.flush()
+        db.session.refresh(user)
         # commit
         db.session.commit()
         return True
