@@ -21,7 +21,7 @@ def allowed_file_img(filename):
         return filename.rsplit('.', 1)[1].lower() in ALLOWED_IMGAGE_EXTENSIONS
 
 
-def upload_file_img(file=None, type_name=None, username=None) -> str:
+def upload_file_img(file=None, type_name=None) -> str:
     """
     Upload file ảnh
 
