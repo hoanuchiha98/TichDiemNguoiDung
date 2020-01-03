@@ -16,9 +16,7 @@ definitions:
       cart:
         type: array
         items:
-          type: object
-          schema:
-            $ref: "#/definitions/cart_detail"
+          $ref: '#/definitions/cart_detail'
   cart_detail:
     type: object
     required:
@@ -29,7 +27,6 @@ definitions:
         type: integer
       quantity:
         type: integer
-
 paths:
   /order:
     post:
@@ -41,7 +38,6 @@ paths:
         - name: cart_data
           in: body
           required: true
-          type: object
           schema:
             $ref: "#/definitions/cart"
       responses:
