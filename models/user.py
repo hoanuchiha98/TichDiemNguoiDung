@@ -40,3 +40,22 @@ class UserSchema(ma.ModelSchema):
 
     def make(self, data, **kwargs):
         return UserModel(**data)
+
+
+class UserSchemaDTO(ma.ModelSchema):
+    class Meta:
+        model = UserModel
+        sqla_session = db.session
+        fields = (
+            'username',
+            # 'password',
+            'fullname',
+            'dob',
+            'address',
+            'phone_number',
+            'email',
+            'role'
+        )
+
+    def make(self, data, **kwargs):
+        return UserModel(**data)

@@ -4,7 +4,8 @@ from flask import Response
 from jose import jwt, JWTError
 from werkzeug.exceptions import Unauthorized
 from common.utils.decode_utils import lazy_hashing
-from models.user import UserModel
+from common.utils.response_status_utils import send_response
+from models.user import UserModel, UserSchemaDTO
 
 JWT_ISSUER = 'com.zalando.connexion'
 JWT_SECRET = 'nWSEuoWcbeKSN'
@@ -58,3 +59,23 @@ def decode_token(token, required_scopes):
 
 def _current_timestamp() -> int:
     return int(time.time())
+
+def login(auth_payload):
+    """
+            API: POST /authenticate
+        """
+    username = auth_payload['username']
+    password = auth_payload['password']
+
+    user = UserModel.query.filter_by(
+        username=username,
+        password=lazy_hashing(password)) \
+        .first()
+    print("User::User==============", user)
+    if user is not None:
+        schema = UserSchemaDTO()
+        # dump data
+        result = schema.dump(user, many=False)
+        return send_response(code=200, data=result)
+    else:
+        return send_response(code=400, message="Sai tài khoản hoặc mật khẩu")

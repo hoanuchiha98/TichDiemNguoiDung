@@ -1,12 +1,12 @@
 # For Authentication
-security:
-  - JWT: []
+#security: []
+#  - JWT: []
 
 paths:
   /authenticate:
     post:
       summary: Return JWT token
-      operationId: controllers.auth.generate_token
+      operationId: controllers.auth.login
       tags:
         - authenticate
       security: []
@@ -25,13 +25,13 @@ paths:
         200:
           description: OK
 
-securityDefinitions:
-  JWT:
-    description: Authorization using JWT
-    in: header
-    name: Authorization
-    type: apiKey
-    x-apikeyInfoFunc: "controllers.auth.decode_token"
+#securityDefinitions:
+#  JWT:
+#    description: Authorization using JWT
+#    in: header
+#    name: Authorization
+#    type: apiKey
+#    x-apikeyInfoFunc: "controllers.auth.decode_token"
 #  JWT_admin:
 #    description: Authorization using JWT_admin
 #    in: header
