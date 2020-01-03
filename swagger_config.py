@@ -23,6 +23,7 @@ swagger_file = hiyapyco.load(
         'swagger-doc/point_to_money.yaml',
         'swagger-doc/extract_point.yaml',
         'swagger-doc/cart.yaml',
+        'swagger-doc/my_order.yaml',
 
     ],
     method=hiyapyco.METHOD_MERGE

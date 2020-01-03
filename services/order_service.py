@@ -3,11 +3,13 @@ from models.bill import BillSchema
 from datetime import datetime
 
 from models.bill_detail import BillDetailSchema
+from models.product import ProductModel
 from models.user import UserModel
 
 
 def create_order(order_data: dict):
     try:
+        message=[]
         schema = BillSchema()
         bill_data = {
             "user_id": order_data["user_id"],
@@ -30,10 +32,20 @@ def create_order(order_data: dict):
             db.session.add(bill_detail)
             db.session.flush()
             db.session.refresh(bill_detail)
+            product_stock = ProductModel.query.filter_by(id=item["id"]).first()
+            if product_stock.count > item["quantity"]:
+                count = product_stock.count - item["quantity"]
+                db.session.query(ProductModel).filter_by(id=item["id"]).update({'count':count})
+                db.session.flush()
+            else:
+                message.append(f"""{product_stock.product_name} trong kho chỉ có {item["quantity"]} không đủ cung cấp""")
+        if len(message)!=0:
+            message_str = ",".join(message)
+            return False, message_str
         # cập nhật điểm
         user = UserModel.query.filter_by(id=order_data["user_id"]).first();
         if user is None:
-            return False
+            return False, "Không tìm thấy người dùng"
         user_point = int(user.point)
         # Cập nhật điểm
         user_point += int((order_data["money_bill"]) / 100)
@@ -46,4 +58,4 @@ def create_order(order_data: dict):
         return True
     except Exception as erroe:
         db.session.rollback()
-        return False
+        return False, "Lỗi server"

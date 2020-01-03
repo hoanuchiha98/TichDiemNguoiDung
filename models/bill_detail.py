@@ -21,3 +21,16 @@ class BillDetailSchema(ma.ModelSchema):
 
     def make(self, data, **kwargs):
         return BillDetailModel(**data)
+
+class BillDetailSchemaDTO(ma.ModelSchema):
+    class Meta:
+        fields = (
+            'bill_detail_id',
+            'product_id',
+            'bill_id',
+            'product_name',
+            'photo',
+            'count',
+            'into_money',
+            'product_description'
+        )
