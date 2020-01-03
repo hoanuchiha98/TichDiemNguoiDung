@@ -11,7 +11,7 @@ def send_response(code=400, data=None, total=0, message=""):
     if code == HTTP_200_OK:
         if total==0:
             return jsonify({"code": code, "message": SUCCESS_MSG, "data": data})
-        return  jsonify({"code": code, "message": SUCCESS_MSG, "data": data, "total": total})
+        return jsonify({"code": code, "message": SUCCESS_MSG, "data": data, "total": total})
     elif code==HTTP_201_CREATED:
         return jsonify({"code": code, "message": SUCCESS_MSG, "data": data})
     elif code == HTTP_202_ACCEPTED:

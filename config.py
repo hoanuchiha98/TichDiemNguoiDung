@@ -17,4 +17,4 @@ UPLOAD_FOLDER = './static/images'
 
 db = SQLAlchemy(flask_app)
 ma = Marshmallow(flask_app)
-CORS(flask_app, resources={r"/api/*": {"origins": "http://localhost:port"}})
+CORS(flask_app, resources={r"/api/*": {"origins": "*"}})

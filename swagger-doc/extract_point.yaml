@@ -1,0 +1,56 @@
+paths:
+  /users/type_member/{user_id}:
+    get:
+      operationId: controllers.accumlate_points_controllers.extract_type_member
+      summary: type member
+      security: []
+      tags:
+        - user
+      parameters:
+        - name: user_id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+
+  /users/accumulate_points:
+    put:
+      operationId: controllers.accumlate_points_controllers.accumulate_points
+      summary: type member
+      security: []
+      tags:
+        - user
+      parameters:
+        - name: user_id
+          in: query
+          type: integer
+          required: true
+        - name: bill_money
+          in: query
+          type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+
+  /users/use_point_pay:
+    get:
+      operationId: controllers.accumlate_points_controllers.use_point_pay
+      summary: type member
+      security: []
+      tags:
+        - user
+      parameters:
+        - name: user_id
+          in: query
+          type: integer
+          required: true
+        - name: bill_money
+          in: query
+          type: integer
+          required: true
+      responses:
+        200:
+          description: OK
