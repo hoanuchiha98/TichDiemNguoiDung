@@ -1,4 +1,4 @@
-from sqlalchemy.dialects.postgresql import psycopg2
+import psycopg2
 
 POSTGRE_USERNAME = "vnas_quantri"
 POSTGRE_PASSWORD = "asdad!my_4_vnas_678"
@@ -18,4 +18,5 @@ def postgre_connection():
     connection = psycopg2.connect(user=POSTGRE_USERNAME, password=POSTGRE_PASSWORD, host=POSTGRE_HOSTNAME,
                                   port=POSTGRE_PORT,
                                   database=POSTGRE_DATABASE_NAME)
+    print(connection)
     return connection

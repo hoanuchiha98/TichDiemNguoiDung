@@ -1,0 +1,33 @@
+paths:
+  /order/my_orders:
+    get:
+      operationId: controllers.order_controller.customer_order
+      summary: customer order
+      tags:
+        - order
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          type: integer
+        - name: desc_date
+          in: query
+          type: boolean
+          required: false
+      responses:
+        200:
+          description: OK
+  /order/my_order_details:
+    get:
+      operationId: controllers.order_controller.custom_order_detail
+      summary: customer order detail
+      tags:
+        - order
+      parameters:
+        - name: bill_id
+          in: query
+          required: true
+          type: integer
+      responses:
+        200:
+          description: OK
