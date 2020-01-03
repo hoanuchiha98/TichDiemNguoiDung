@@ -5,7 +5,7 @@ from jose import jwt, JWTError
 from werkzeug.exceptions import Unauthorized
 from common.utils.decode_utils import lazy_hashing
 from common.utils.response_status_utils import send_response
-from models.user import UserModel, UserSchemaDTO
+from models.user import UserModel, UserSchemaDTO, UserSchema
 
 JWT_ISSUER = 'com.zalando.connexion'
 JWT_SECRET = 'nWSEuoWcbeKSN'
@@ -73,7 +73,7 @@ def login(auth_payload):
         .first()
     print("User::User==============", user)
     if user is not None:
-        schema = UserSchemaDTO()
+        schema = UserSchema()
         # dump data
         result = schema.dump(user, many=False)
         return send_response(code=200, data=result)
