@@ -44,7 +44,7 @@ def custom_order_detail(bill_id: int):
                            b.id as bill_id,
                            p.product_name as product_name,
                            p.photo as photo,
-                           p.product_price as product_price
+                           p.product_price as product_price,
                            bd.count as count_detail,
                            p.description as product_description,
                            p.product_price * bd.count as into_money
