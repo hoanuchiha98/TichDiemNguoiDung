@@ -1,4 +1,3 @@
-from flask import Response
 
 from common.utils.check_role import check_role_user
 from common.utils.http_status import HTTP_404_NOT_FOUND, HTTP_409_CONFLICT
