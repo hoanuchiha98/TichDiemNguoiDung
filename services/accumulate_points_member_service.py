@@ -15,6 +15,7 @@ def accumulate_points(user_id: int, bill_money: int):
         db.session.add(user)
         db.session.flush()
         db.session.refresh(user)
+        db.session.commit()
         # dump
         result = UserSchema().dump(user, many=False)
         return HTTP_200_OK, result

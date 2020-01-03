@@ -1,0 +1,45 @@
+definitions:
+  cart:
+    type: object
+    required:
+      - user_id
+      - money_bill
+      - conversion_point
+      - cart
+    properties:
+      user_id:
+        type: integer
+      money_bill:
+        type: integer
+      conversion_point:
+        type: integer
+      cart:
+        type: array
+        items:
+          $ref: '#/definitions/cart_detail'
+  cart_detail:
+    type: object
+    required:
+      - quantity
+      - id
+    properties:
+      id:
+        type: integer
+      quantity:
+        type: integer
+paths:
+  /order:
+    post:
+      operationId: controllers.order_controller.create_orders
+      summary: create cart
+      tags:
+        - order
+      parameters:
+        - name: cart_data
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/cart"
+      responses:
+        200:
+          description: OK
